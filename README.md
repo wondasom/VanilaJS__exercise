@@ -1,10 +1,10 @@
 # Vanila JS Exercises 💛
 
 This is a collection of toy projects made with Vanila JS without any framework.
-They include very basic yet important front-end features.
+They include very basic yet important front-end features. 🔥
 <br />
 
-## 1. Target Pointer
+## 1. Target Pointer ✔️
 
 Users are able to
 -  target a pointer by moving a mouse 🖱
@@ -62,7 +62,7 @@ tag.style.transform = `translate(${x}px, ${y}px)`;
 
 <br />
 
-## 2. Shopping List
+## 2. Shopping List 🛒 
 
 Users are able to
 -  add a new item to the list by click the buttton 🖱 or pressing enter ⌨️
@@ -70,12 +70,5 @@ Users are able to
 
 <br />
 
-## ⚒️ Technologies
-
-This projects are created with:
-
--  HTML
--  CSS
--  Vanila JS
 
 
