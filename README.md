@@ -1,6 +1,7 @@
 # Vanila JS Exercises 💛
 
 This is a collection of toy projects made with Vanila JS without any framework.
+They include very basic yet important front-end features.
 
 ## 1. Shopping List
 
