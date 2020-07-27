@@ -73,6 +73,7 @@ Users are able to
 ## 3. Carrot Finding Game 🥕 
 Users win 🎉 when
 -  they click all the carrots within time limit
+
 Users lose 💩 when
 - they click any bug or
 - they fail to click all the carrots within time limit
