@@ -61,8 +61,8 @@ body {
 .game__field {
 	width: 100%;
 	height: 100%;
-	margin-top: 40px;
-	opacity: 0.4;
+    margin-top: 40px;
+    position: relative;
 }
 
 /* pop-up */
