@@ -71,10 +71,27 @@ Users are able to
 <br />
 
 ## 3. Carrot Finding Game 🥕 
-Users win 🎉 when
+🎉  Users win when
 -  they click all the carrots within time limit
 
-Users lose 💩 when
+💩  Users lose when
 - they click any bug or
 - they fail to click all the carrots within time limit
+
+
+
+### Please Note❗️ (3)
+In an attempt to do refactoring by creating js modules...
+- you need to include ```type="module"``` in the <script> element, to declare this script as a module
+- for example: to import the ```main.js``` script, we use this:
+```
+<script type="module" src="main.js"></script>
+```
+
+During this process, you might run into an error in local testing environment 🤦🏻‍♀️ 
+- if you try to load the HTML file locally (i.e. with a ``` file:// ``` URL), 
+- you'll run into CORS errors due to JavaScript module security requirements. 
+- You need to do your testing through a server. [MORE INFO HERE](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+- ✨ SOLUTION ✨ : (if you use VS Code) install [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension
+
 
