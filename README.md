@@ -9,7 +9,7 @@ They include very basic yet important front-end features. 🔥
 Users are able to
 -  target a pointer by moving a mouse 🖱
 
-### Noteworthy things❗️ (1)
+### Please Note❗️ (1)
 - The code block below is an attempt to adjust the target image to be center.
 - However, it does not work because `targetHalfWidth` and `targetHalfHeight` are somehow `0`, even though it does not look like it on the browser.
 ```
@@ -52,7 +52,7 @@ addEventListener("load", () => {
 });
 
 ```
-### Noteworthy things❗️ (2)
+### Please Note❗️ (2)
 - For the better performance(to improve CRP), 
 ```tag.style.top = `${y}px`;``` better be changed to
 ```
@@ -70,5 +70,11 @@ Users are able to
 
 <br />
 
+## 3. Carrot Finding Game 🥕 
+Users win 🎉 when
+-  they click all the carrots within time limit
 
+Users lose 💩 when
+- they click any bug or
+- they fail to click all the carrots within time limit
 
