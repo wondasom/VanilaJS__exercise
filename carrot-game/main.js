@@ -25,10 +25,17 @@ gameBtn.addEventListener("click", () => {
 	} else {
 		startGame();
 	}
-	started = !started;
+});
+
+field.addEventListener("click", onFieldClick);
+
+popUpRefresh.addEventListener("click", () => {
+	startGame();
+	hidePopUp();
 });
 
 function startGame() {
+	started = true;
 	initGame();
 	showStopButton();
 	showTimerAndScore();
@@ -36,9 +43,17 @@ function startGame() {
 }
 
 function stopGame() {
-    stopGameTimer();
-    hideGameButton();
+	started = false;
+	stopGameTimer();
+	hideGameButton();
 	showPopUpWithText("REPLAY❓");
+}
+
+function finishGame(win) {
+	started = false;
+	hideGameButton();
+	stopGameTimer();
+	showPopUpWithText(win ? "YOU WON 🎉" : "YOU LOST 💩");
 }
 
 function showStopButton() {
@@ -48,8 +63,8 @@ function showStopButton() {
 	gameBtn.style.visibility = "visible";
 }
 
-function hideGameButton(){
-    gameBtn.style.visibility = "hidden";
+function hideGameButton() {
+	gameBtn.style.visibility = "hidden";
 }
 
 function showTimerAndScore() {
@@ -63,6 +78,7 @@ function startGameTimer() {
 	timer = setInterval(() => {
 		if (remainingTimeSec <= 0) {
 			clearInterval(timer);
+			finishGame(CARROT_COUNT === score);
 			return;
 		}
 		updateTimerText(--remainingTimeSec);
@@ -79,15 +95,19 @@ function updateTimerText(time) {
 	gameTimer.innerText = `${minutes}:${seconds}`;
 }
 
-function showPopUpWithText (text){
-    popUpText.innerText = text;
+function showPopUpWithText(text) {
+	popUpText.innerText = text;
 	popUp.classList.remove("pop-up--hide");
 }
 
+function hidePopUp() {
+	popUp.classList.add("pop-up--hide");
+}
+
 function initGame() {
+	score = 0;
 	field.innerHTML = "";
 	gameScore.innerText = CARROT_COUNT;
-	// create carrots and bugs and add them to the field
 	addItem("carrot", CARROT_COUNT, "img/carrot.png");
 	addItem("bug", BUG_COUNT, "img/bug.png");
 }
@@ -112,4 +132,26 @@ function addItem(className, count, imgPath) {
 
 function randomNumber(min, max) {
 	return Math.random() * (max - min) + min;
+}
+
+function onFieldClick(event) {
+	if (!started) {
+		return;
+	}
+	const target = event.target;
+	if (target.matches(".carrot")) {
+		target.remove();
+		score++;
+		updateScoreBoard();
+		if (score === CARROT_COUNT) {
+			finishGame(true);
+		}
+	} else if (target.matches(".bug")) {
+		stopGameTimer();
+		finishGame(false);
+	}
+}
+
+function updateScoreBoard() {
+	gameScore.innerText = CARROT_COUNT - score;
 }
