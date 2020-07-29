@@ -3,8 +3,15 @@
 import Field from './field.js';
 import * as sound from './sound.js';
 
+// to guarantee type
+export const Reason = Object.freeze({
+	win: 'win',
+	lose: 'lose',
+	cancel: 'cancel'
+});
+
 // Builder Pattern
-export default class GameBuilder {
+export class GameBuilder {
 	gameDuration(duration) {
 		this.gameDuration = duration;
 		return this;
@@ -37,7 +44,7 @@ class Game {
 		this.gameBtn = document.querySelector('.game__button');
 		this.gameBtn.addEventListener('click', () => {
 			if (this.started) {
-				this.stop();
+				this.stop(Reason.cancel);
 			} else {
 				this.start();
 			}
@@ -59,26 +66,12 @@ class Game {
 		sound.playBackGround();
 	}
 
-	stop() {
+	stop(reason) {
 		this.started = false;
 		this.stopGameTimer();
 		this.hideGameButton();
-		sound.playAlert();
 		sound.stopBackGround();
-		this.onGameStop && this.onGameStop('cancel');
-	}
-
-	finish(win) {
-		this.started = false;
-		this.hideGameButton();
-		if (win) {
-			sound.playWin();
-		} else {
-			sound.playBug();
-		}
-		this.stopGameTimer();
-		sound.stopBackGround();
-		this.onGameStop && this.onGameStop(win ? 'win' : 'lose');
+		this.onGameStop && this.onGameStop(reason);
 	}
 
 	onItemClick = (item) => {
@@ -89,10 +82,10 @@ class Game {
 			this.score++;
 			this.updateScoreBoard();
 			if (this.score === this.carrotCount) {
-				this.finish(true);
+				this.stop(Reason.win);
 			}
 		} else if (item === 'bug') {
-			this.finish(false);
+			this.stop(Reason.lose);
 		}
 	};
 
@@ -121,7 +114,7 @@ class Game {
 		this.timer = setInterval(() => {
 			if (remainingTimeSec <= 0) {
 				clearInterval(this.timer);
-				this.finish(this.carrotCount === this.score);
+				this.stop(this.carrotCount === this.score ? Reason.win : Reason.lose);
 				return;
 			}
 			this.updateTimerText(--remainingTimeSec);
