@@ -32,7 +32,7 @@ document.addEventListener("mousemove", () => {
 	});
 ```
 
-- It is becayse the `<script>` is embedded with `defer`,
+- It is because the `<script>` is embedded with `defer`,
 - which means as soon as the HTML is ready, the script is excuted before the src(in tis case, `<img class="target" src="img/target.png" alt="target" />` arrives,
 - therefore, the value of `targetHalfWidth` and `targetHalfHeight` are `0`.
 
